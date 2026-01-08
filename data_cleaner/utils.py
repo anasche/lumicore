@@ -2,9 +2,8 @@ import requests
 import time
 from datetime import datetime
 import re
+from lumicore_backend.env import BASE_API, CANDIDATE_ID
 
-API_BASE = "https://fast-endpoint-production.up.railway.app"
-CANDIDATE_ID = "candidate-mohammed-anas-x7k2"
 
 # ------------------------
 # Field mappings (for reference)
@@ -24,7 +23,7 @@ DATE_FORMATS = ["%Y-%m-%d", "%d/%m/%Y", "%m/%d/%Y", "%d-%m-%Y", "%b %d %Y", "%d 
 # Fetch data from LumiCore API with retry logic
 # ------------------------
 def fetch_data(batch=1, retries=3, delay=0.5):
-    url = f"{API_BASE}/api/data?batch={batch}"
+    url = f"{BASE_API}/api/data?batch={batch}"
     headers = {"X-Candidate-Id": CANDIDATE_ID}
     for i in range(retries):
         try:

@@ -4,8 +4,7 @@ from .utils import fetch_data, normalize_record, remove_duplicates
 import requests
 import os
 
-API_BASE = os.getenv("LUMICORE_API", "https://fast-endpoint-production.up.railway.app")
-CANDIDATE_ID = os.getenv("CANDIDATE_ID", "candidate-mohammedanas-abc123")
+from lumicore_backend.env import BASE_API, CANDIDATE_ID
 
 
 # ------------------------
@@ -41,7 +40,7 @@ def get_cleaned_data(request, batch=1):
 # ------------------------
 @api_view(['POST'])
 def submit_cleaned_data(request):
-    url = f"{API_BASE}/api/submit"
+    url = f"{BASE_API}/api/submit"
     payload = {
         "candidate_name": "Mohammed Anas",
         "batch_id": request.data.get("batch_id"),
